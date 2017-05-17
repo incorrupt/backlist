@@ -7,9 +7,9 @@ use Exception;
 
 class DataMapper {
 
-	protected $connect;
-	protected $model;
-	protected $container;
+	private $connect;
+	private $container;
+	private $model;
 
 	public function __construct($container,$model) {
 		$this->container=$container;
@@ -32,6 +32,17 @@ class DataMapper {
 		}		 
 	} 
 
+	private function execute($sql,$param=array()){
+		$this->container['logger']->sql($sql,$param);
+		$stmt = $this->connect->prepare($sql);
+    	$stmt->execute($param);
+
+    	//$this->container['logger']->sql('RESULT: '.count($stmt),$param);
+    	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$this->container['logger']->sql($sql,$result);
+    	return $result;
+
+	}
 	private function delete($table,$where) { 
 		$arr_params = array();
 		$arr_where = array();
@@ -45,8 +56,7 @@ class DataMapper {
 	    }
 	    $str_where = implode(" AND ",$arr_where);
     	$sql = "DELETE from {$table} WHERE {$str_where}";
-    	$stmt = $this->connect->prepare($sql);
-    	$stmt->execute($arr_params);
+    	$stmt = $this->execute($sql,$arr_params);
 	}
 
 	private function insert($table,$row) {
@@ -56,8 +66,7 @@ class DataMapper {
 		$col_names = implode(",",array_keys($row) );
     	$param_names = ':'.implode(",:",array_keys($row));
     	$sql = "INSERT INTO {$table}({$col_names}) VALUES({$param_names});";
-    	$stmt = $this->connect->prepare("INSERT INTO {$table}({$col_names}) VALUES({$param_names})");
-    	$stmt->execute($row);
+    	$stmt = $this->execute($sql,$row);
     	return $this->connect->lastInsertId(); 
 	}
 
@@ -86,9 +95,7 @@ class DataMapper {
 	    }
 		 
     	$sql = "SELECT * FROM {$table} {$str_where} {$str_order}";
-    	$stmt = $this->connect->prepare($sql);
-    	$stmt->execute($arr_params);
-    	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    	return $this->execute($sql,$arr_params);
 	} 
 
 	private function update($table,$row,$where) {
@@ -122,8 +129,7 @@ class DataMapper {
 	    $str_set = implode(", ",$arr_set);
 	    $str_where = implode(" AND ",$arr_where);
     	$sql = "UPDATE {$table} SET {$str_set} WHERE {$str_where}";
-    	$stmt = $this->connect->prepare($sql);
-    	$stmt->execute($arr_params);
+    	$stmt = $this->execute($sql,$arr_params);
 	} 
 
 	public function create() {

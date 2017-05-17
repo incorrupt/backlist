@@ -25,18 +25,30 @@ class Book extends Model {
     }
 
     public function getAuthors() {
-        
         $author_mapper=$this->container['author_mapper'];
         $book_author_mapper=$this->container['book_author_mapper'];
-        $books_author = $book_author_mapper->create()->getByBook_id($this->id);
+        $book_authors = $book_author_mapper->create()->getByBook_id($this->id);
+        $authors =array();
+        if (count($book_authors)>0){      
+            foreach ($book_authors as $key => $item) {
+                $authors[$key] = $author_mapper->create()->getWithId($item->author_id);
+            } 
+        }
+        return $authors;   
+    }
 
-        if (count($books_author)>0){
-            $authors =array();
-            foreach ($books_author as $ba) {
-                $authors[] = $author_mapper->create()->getById($ba->author_id);
-            }
-            return $authors;
-        }   
+    public function getGenres() {
+        $genre_mapper=$this->container['genre_mapper'];
+        $book_genre_mapper=$this->container['book_genre_mapper'];
+        $book_genres = $book_genre_mapper->create()->getByBook_id($this->id);
+        $genres =array();
+        if (count($book_genres)>0){
+           
+            foreach ($book_genres as $key => $item) {
+                $genres[$key] = $genre_mapper->create()->getWithId($item->genre_id);
+            }  
+        }
+        return $genres;   
     }
 
     public function addGenre(Genre &$genre) {

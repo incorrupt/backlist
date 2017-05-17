@@ -13,6 +13,7 @@ class BooksController extends Controller{
 		$book = $book_mapper->create()->getWithId($id);
 		$data['book']=$book;
 		$data['authors']=$book->getAuthors();
+		$data['genres']=$book->getGenres();
 		$this->view->title.=' | '.$book->title;
 		$this->view->render('book_item',$data);
 	}

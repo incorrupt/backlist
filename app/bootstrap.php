@@ -5,6 +5,7 @@ require_once __DIR__.'/../vendor/autoload.php';
  
 use App\Core\DM\DataMapper;
 use App\Core\Configuration;
+use App\Core\Logger;
 use App\Core\Application;
 use App\Core\Router;
 use App\Core\View;
@@ -14,7 +15,11 @@ try {
 	$container = new Pimple\Container();
 
 	$container['cfg'] =$container->factory(function ($c) {
-		return new Configuration;
+		return new Configuration("config.ini");
+	});
+
+	$container['logger'] = $container->factory(function ($c) {
+  		return new Logger($c);
 	});
 
 	foreach(glob(__DIR__.'/models/*.php') as $file)  

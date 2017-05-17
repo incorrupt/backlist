@@ -24,35 +24,30 @@ abstract class Model
  		if ( strtolower(substr($name,0,5))=='getby' ) {
  			$property = strtolower(substr($name,5));
  			$argument=$arguments[0];
- 			$this->getByProperty($property,$argument); 
+ 			return $this->getByProperty($property,$argument); 
  		}
     }
 
     public function getWithId($book_id){
-    	echo $book_id;
     	$result = $this->getByProperty('id',$book_id);
     	return $result[0];
     }
 
     public function getByProperty($name,$argument){
     	$mapper=$this->mapper;
+    	$object_arr=array();
  		if (property_exists($this,$name)) {
 			$result_arr = $mapper->select($mapper->getModel(),[$name=>$argument]);
-
 			if (count($result_arr)>0) {
-			/*	throw new No_Data_Found(get_class($this)." not exists with {$name}={$argument} "); 
-			} else {*/
-				$object_arr=array();
 				foreach ($result_arr as $key => $record) {
 					$row = array_change_key_case($record, CASE_LOWER);
 					$object_arr[$key]=$mapper->build($row);
 				}
-				return $object_arr;
 			}
-
  		} else {
  			throw new Unknown_Property(" not exists property {$name} in class ".$mapper->getModel());
  		}
+ 		return $object_arr;
     }
 
 	public function all() {
