@@ -1,13 +1,14 @@
 backlist
 =============
 
-#git
 
-#todo
+[git](#git)
+
+[todo](#todo)
 
 
 git
------------
+-------
 
 ```
 git clone https://github.com/incorrupt/backlist.git 
@@ -39,7 +40,7 @@ git config --global merge.tool kdiff3
 
 
 todo
------------
+-------
 
 1.ewer
 1.werwrw
