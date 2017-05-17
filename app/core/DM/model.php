@@ -28,8 +28,11 @@ abstract class Model
  		}
     }
 
-    public function getWithId($book_id){
-    	$result = $this->getByProperty('id',$book_id);
+    public function getWithId($id){
+    	$result = $this->getByProperty('id',$id);
+    	if (count($result)==0) {
+    		throw new No_Data_Found(" unknown id {$id} "); 
+    	}
     	return $result[0];
     }
 

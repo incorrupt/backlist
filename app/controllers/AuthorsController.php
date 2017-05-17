@@ -18,7 +18,11 @@ class AuthorsController extends Controller{
 		$this->view->render('author_item',$data);
 	}
 
-
-	public function all(){}
-
+	public function all() {
+		$this->view->title.=' | Authors list';
+		$data=array();
+		$mapper=$this->container['author_mapper'];
+		$data['authors'] = $mapper->create()->all();
+		$this->view->render('authors_list',$data);
+	}
 }

@@ -1,12 +1,10 @@
-
-
 <?php require 'header.php'; ?>
 
     <h3>Books list.</h3>
     
     <ul>
     <?php foreach ($books as $book) { ?>
-    	<li><?= $book->title; ?></li>
+    	<li><a href="/books/show/<?=$book->id;?>"><?=$book->title;?></a></li>
     <?php } ?>
   	</ul>
 

@@ -18,13 +18,10 @@ class BooksController extends Controller{
 		$this->view->render('book_item',$data);
 	}
 	public function all() {
-		$this->view->title.=' | books list';
-		$this->view->description='books list';
+		$this->view->title.=' | Books list';
 		$data=array();
-		$book_mapper=$this->container['book_mapper'];
-
-		$data['books'] = $book_mapper->create()->all();
-
+		$mapper=$this->container['book_mapper'];
+		$data['books'] = $mapper->create()->all();
 		$this->view->render('books_list',$data);
 	}
 }

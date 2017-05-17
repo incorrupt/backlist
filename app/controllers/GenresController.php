@@ -18,6 +18,12 @@ class GenresController extends Controller{
 		$this->view->render('genre_item',$data);
 	}
 
-	public function all(){}
+	public function all() {
+		$this->view->title.=' | Genres list';
+		$data=array();
+		$mapper=$this->container['genre_mapper'];
+		$data['genres'] = $mapper->create()->all();
+		$this->view->render('genres_list',$data);
+	}
 
 }
