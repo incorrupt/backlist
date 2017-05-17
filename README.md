@@ -42,6 +42,6 @@ git config --global merge.tool kdiff3
 todo
 -------
 
-1.ewer
-1.werwrw
-1.sfsfsfzfsd
+* ewer
+* werwrw
+* sfsfsfzfsd
