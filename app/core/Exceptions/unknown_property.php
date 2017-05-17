@@ -1,6 +1,5 @@
 <?php
-namespace App\Core\DM\Exceptions;
-use PDO;
+namespace App\Core\Exceptions;
 use Exception;
 
 class Unknown_Property extends Exception {

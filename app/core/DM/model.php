@@ -1,8 +1,8 @@
 <?php
 namespace App\Core\DM;
 use App\Core\DM\DataMapper;
-use App\Core\DM\Exceptions\No_Data_Found;
-use App\Core\DM\Exceptions\Unknown_Property;
+use App\Core\Exceptions\No_Data_Found;
+use App\Core\Exceptions\Unknown_Property;
 
 abstract class Model 
 {

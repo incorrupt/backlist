@@ -7,7 +7,7 @@ use App\Core\DM\DataMapper;
 use App\Core\Configuration;
 use App\Core\Application;
 use App\Core\Router;
-
+use App\Core\View;
 
 try {
 
@@ -33,6 +33,10 @@ try {
 			return $mapper;
 		});
 	}  
+
+	$container['view'] = function ($c) {
+  		return new View($c);
+	};
 
 	$container['router'] = $container->factory(function ($c) {
   		return new Router($c);

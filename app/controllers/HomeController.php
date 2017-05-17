@@ -6,8 +6,10 @@ class HomeController extends Controller{
 	
 	public function index(){
 		echo 'home index <br>';
+		$this->view->render('home',array());
 		//print_r($_GET);
 		
+		/*
 		$author_mapper=$this->container['author_mapper'];
 		$genre_mapper=$this->container['genre_mapper'];
 		$book_mapper=$this->container['book_mapper'];
@@ -27,7 +29,7 @@ class HomeController extends Controller{
 
 		$book->addGenre($genre);
 		$book->addAuthor($author1);
-		$book->addAuthor($author2);*/
+		$book->addAuthor($author2);
 
 		$genre2 = $genre_mapper->create()->getByName('JAVA 2');
 
