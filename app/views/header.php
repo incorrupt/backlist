@@ -10,7 +10,7 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"> 
-        
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script> 
 
         <link rel="stylesheet" href="/css/normalize.css">
@@ -29,3 +29,5 @@
         <div id="sidebar">
             <?php require 'sidebar.php'; ?>
         </div>
+
+        <div class="container">
