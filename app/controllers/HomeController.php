@@ -5,8 +5,27 @@ use App\Core\Controller;
 class HomeController extends Controller{
 	
 	public function index(){
-		echo 'home index <br>';
-		$this->view->render('home',array());
+		$this->view->title='Home Index';
+		$this->view->description='Home Index';
+		$data=array();
+
+		$book_mapper=$this->container['book_mapper'];
+
+		$data['books'] = $book_mapper->create()->all();
+
+		$this->view->render('home',$data);
+	}
+
+	public function books(){
+		$data=array();
+
+		$book_mapper=$this->container['book_mapper'];
+
+		$data['books'] = $book_mapper->create()->all();
+
+		$this->view->render('home',$data);
+	}
+
 		//print_r($_GET);
 		
 		/*
@@ -58,12 +77,12 @@ class HomeController extends Controller{
 		$book_genre_mapper->save($book_genre);
 */
 
- 	 	echo 'ok!';
+ 	  
  /*
 		$book = $this->container['book_mapper']->all();
 		foreach ( $books as $key => $value ) {
 			print_r($value->row());
 		}*/
-	} 
+	//} 
 
 }

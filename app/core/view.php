@@ -1,18 +1,22 @@
 <?php
 namespace App\Core;
+use Pimple\Container;
 
 class View {
 
+	public $title;
+	public $description;
 	protected $container;
 
 	public function __construct( Container $container) {
 		$this->container=$container;
+		$this->title=$container['cfg']->default_page_title;
+		$this->description=$container['cfg']->default_page_description;
 	}
 
 	function render($template_view, $data = null)
 	{
-		$templ_path = glob(__DIR__."/views/{$template_view}.php")
- 
+		$templ_path = __DIR__."/../views/{$template_view}.view.php";
 		if (!is_file($templ_path)) {
 			throw new \Exception("view not exists ");
 		}
@@ -28,7 +32,6 @@ class View {
 			ob_end_clean();
 			throw $e;
 		}
- 
-		//include 'app/views/'.$template_view;
+
 	}
 }

@@ -24,6 +24,21 @@ class Book extends Model {
     	return $row;
     }
 
+    public function getAuthors() {
+        
+        $author_mapper=$this->container['author_mapper'];
+        $book_author_mapper=$this->container['book_author_mapper'];
+        $books_author = $book_author_mapper->create()->getByBook_id($this->id);
+
+        if (count($books_author)>0){
+            $authors =array();
+            foreach ($books_author as $ba) {
+                $authors[] = $author_mapper->create()->getById($ba->author_id);
+            }
+            return $authors;
+        }   
+    }
+
     public function addGenre(Genre &$genre) {
         $genre_mapper=$this->container['genre_mapper'];
         $book_genre_mapper=$this->container['book_genre_mapper'];
@@ -45,7 +60,7 @@ class Book extends Model {
     }
 
     public function addAuthor(Author &$author) {
-        $author_mapper=$this->container['genre_mapper'];
+        $author_mapper=$this->container['author_mapper'];
         $book_author_mapper=$this->container['book_author_mapper'];
 
         if (!$author->id) {

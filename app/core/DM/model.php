@@ -28,17 +28,28 @@ abstract class Model
  		}
     }
 
-    public function getByProperty($name,$value){
+    public function getWithId($book_id){
+    	echo $book_id;
+    	$result = $this->getByProperty('id',$book_id);
+    	return $result[0];
+    }
+
+    public function getByProperty($name,$argument){
     	$mapper=$this->mapper;
  		if (property_exists($this,$name)) {
 			$result_arr = $mapper->select($mapper->getModel(),[$name=>$argument]);
 
-			if (count($result_arr)==0) {
-				throw new No_Data_Found(" not exists with {$name}={$argument} "); 
+			if (count($result_arr)>0) {
+			/*	throw new No_Data_Found(get_class($this)." not exists with {$name}={$argument} "); 
+			} else {*/
+				$object_arr=array();
+				foreach ($result_arr as $key => $record) {
+					$row = array_change_key_case($record, CASE_LOWER);
+					$object_arr[$key]=$mapper->build($row);
+				}
+				return $object_arr;
 			}
 
-			$row = array_change_key_case($result_arr[0], CASE_LOWER);
-			return $mapper->build($row);
  		} else {
  			throw new Unknown_Property(" not exists property {$name} in class ".$mapper->getModel());
  		}

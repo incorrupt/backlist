@@ -17,13 +17,6 @@ try {
 		return new Configuration;
 	});
 
-	/*$container['db_connect'] = $container->factory(function ($c) {
-  		$cfg=$c['cfg'];
-		$db_option=[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION];
-        $connect = new PDO($cfg->db_dns,$cfg->db_user,$cfg->db_pass,$db_option);
-        return $connect;
-	});*/
-
 	foreach(glob(__DIR__.'/models/*.php') as $file)  
 	{  
 	    $model=strtolower(basename($file, ".php"));  

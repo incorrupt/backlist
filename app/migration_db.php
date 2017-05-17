@@ -1,54 +1,5 @@
 <?php
 
-$migrate_sql=array();
-
-$migrate_sql['CREATE']['book']=>
-"CREATE TABLE book (
-    id INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-    title VARCHAR(256) NOT NULL,
-    ISBN VARCHAR(128),
-    year INT(4),
-	description VARCHAR(2000),
-    publisher INT(8)  
-    ) ENGINE=InnoDB DEFAULT CHARACTER SET=utf8;";
-
-$migrate_sql['CREATE']['genre']=>
-"CREATE TABLE genre (
-    id INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-    name VARCHAR(256) NOT NULL
-    )";
-
-$migrate_sql['CREATE']['publisher']=>
-"CREATE TABLE publisher (
-    id INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-    name VARCHAR(256) NOT NULL,
-    city  VARCHAR(256)
-    )";
-
-$migrate_sql['CREATE']['author']=>
-"CREATE TABLE author (
-    id INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-    name VARCHAR(256) NOT NULL
-    )";
- 
-$migrate_sql['CREATE']['book_author']=>
-"CREATE TABLE book_author (
-    id INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-    book INT(8) FOREIGN KEY book(id),
-    author INT(8) FOREIGN KEY author(id),
-    )";
- 
-
-$migrate_sql['CREATE']['book_genre']=>
-"CREATE TABLE book_genre (
-    id INT(8) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-    book INT(8) FOREIGN KEY book(id),
-    genre INT(8) FOREIGN KEY genre(id),
-    )";
- 
-
-
-
 DROP TABLE book_author;
 DROP TABLE book_genre;
 DROP TABLE book;

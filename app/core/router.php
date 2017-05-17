@@ -4,10 +4,10 @@ use Pimple\Container;
 
 class Router
 {
-	protected $method;
-	protected $controller;
-	protected $action;
-	protected $action_params;
+	public $method;
+	public $controller;
+	public $action;
+	public $action_params;
 	protected $container;
 
 	public function __construct( Container $container) {
@@ -43,13 +43,13 @@ class Router
 		}
 
 		if ( !empty($routes[2]) ) {
-			$this->controller = $routes[2];
+			$this->action = $routes[2];
 		} else {
 			$this->action = 'index';
 		}
-
+		
 		if ( !empty($routes[3]) ) {
-			$this->action_params = array_slice($routes, 2); ;
+			$this->action_params = array_slice($routes,3) ;
 		} else {
 			$this->action_params = array();
 		}
