@@ -36,12 +36,8 @@ class DataMapper {
 		$this->container['logger']->sql($sql,$param);
 		$stmt = $this->connect->prepare($sql);
     	$stmt->execute($param);
-
-    	//$this->container['logger']->sql('RESULT: '.count($stmt),$param);
     	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$this->container['logger']->sql($sql,$result);
     	return $result;
-
 	}
 	private function delete($table,$where) { 
 		$arr_params = array();

@@ -1,20 +1,21 @@
- <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo right">Logo</a>
-      <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="/books/all">Books</a></li>
-        <li><a href="/authors/all">Authors</a></li>
-        <li><a href="/genres/all">Genres</a></li>
-      </ul>
-      <li>
-      <form class="red lighten-3">
-        <div class="input-field">
-          <input id="search" type="search"/>
-          <label for="search"><i class="mdi-action-search"></i></label><i class="mdi-navigation-close close"></i>
+
+ <div class="ui borderless main menu " >
+    <div class="ui text container">
+      <div href="#" class="header item">
+         <i class="book icon"></i>Каталог книг
+      </div>
+      <a class="<?=($active_nav=='books') ? 'active' : '';?> item" href="/books/all">Книги</a>
+      <a class="<?=($active_nav=='authors') ? 'active' : '';?> item" href="/authors/all">Авторы</a>
+      <a class="<?=($active_nav=='genres') ? 'active' : '';?> item" href="/genres/all">Категрии</a>
+
+      <div class="right menu">
+        <div class="item">
+          <form class="ui action left icon input" action="/search" method="post">
+            <i class="search icon"></i>
+            <input name="search_str" type="text" placeholder="...">
+            <button class="ui button">Поиск</button>
+          </form>
         </div>
-      </form>
-</li>
-      </ul>
+      </div>
     </div>
-  </nav>
-        
+  </div>

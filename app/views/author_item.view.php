@@ -2,7 +2,7 @@
 
 <?php require 'header.php'; ?>
 
-    <h3>Author item.</h3>
+    <h2 class="ui dividing header"><?= $author->name; ?></h2>
     
     <ul>
     	<li><?= $author->name; ?></li>

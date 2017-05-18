@@ -1,6 +1,5 @@
 
-	
-	</div> <!-- div.container -->
+	</div>
 
  </body>
 

@@ -14,6 +14,7 @@ class GenresController extends Controller{
 		$genre = $genre_mapper->create()->getWithId($id);
 		$data['genre']=$genre;
 		$data['books']=$genre->getBooks();
+		$data['active_nav'] = 'genres';
 		$this->view->title.=' | '.$genre->name;
 		$this->view->render('genre_item',$data);
 	}
@@ -22,6 +23,7 @@ class GenresController extends Controller{
 		$this->view->title.=' | Genres list';
 		$data=array();
 		$mapper=$this->container['genre_mapper'];
+		$data['active_nav'] = 'genres';
 		$data['genres'] = $mapper->create()->all();
 		$this->view->render('genres_list',$data);
 	}

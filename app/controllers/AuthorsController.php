@@ -14,6 +14,7 @@ class AuthorsController extends Controller{
 		$author = $author_mapper->create()->getWithId($id);
 		$data['author']=$author;
 		$data['books']=$author->getBooks();
+		$data['active_nav'] = 'authors';
 		$this->view->title.=' | '.$author->name;
 		$this->view->render('author_item',$data);
 	}
@@ -22,6 +23,7 @@ class AuthorsController extends Controller{
 		$this->view->title.=' | Authors list';
 		$data=array();
 		$mapper=$this->container['author_mapper'];
+		$data['active_nav'] = 'authors';
 		$data['authors'] = $mapper->create()->all();
 		$this->view->render('authors_list',$data);
 	}

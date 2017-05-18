@@ -1,9 +1,10 @@
 
-
 <?php require 'header.php'; ?>
 
-    <h3>Genre item.</h3>
-    
+
+    <h2 class="ui dividing header"><?= $genre->name; ?></h2>
+  
+  
     <ul>
     	<li><?= $genre->name; ?></li>
     	<li><label>Books: </label>
@@ -14,5 +15,8 @@
     	</li>
 
   	</ul>
+ 
+
+
 
 <?php require 'footer.php'; ?>

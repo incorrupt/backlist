@@ -5,7 +5,8 @@ use App\Core\Controller;
 class HomeController extends Controller{
 	
 	public function index(){
-		$this->view->title='Home Index';
+		header("Location: /books/all");
+	/*	$this->view->title='Home Index';
 		$this->view->description='Home Index';
 		$data=array();
 
@@ -13,7 +14,7 @@ class HomeController extends Controller{
 
 		$data['books'] = $book_mapper->create()->all();
 
-		$this->view->render('home',$data);
+		$this->view->render('home',$data);*/
 	}
 
 	public function books(){

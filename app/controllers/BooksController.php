@@ -12,6 +12,7 @@ class BooksController extends Controller{
 		$book_mapper=$this->container['book_mapper'];
 		$book = $book_mapper->create()->getWithId($id);
 		$data['book']=$book;
+		$data['active_nav'] = 'books';
 		$data['authors']=$book->getAuthors();
 		$data['genres']=$book->getGenres();
 		$this->view->title.=' | '.$book->title;
@@ -21,6 +22,7 @@ class BooksController extends Controller{
 		$this->view->title.=' | Books list';
 		$data=array();
 		$mapper=$this->container['book_mapper'];
+		$data['active_nav'] = 'books';
 		$data['books'] = $mapper->create()->all();
 		$this->view->render('books_list',$data);
 	}
