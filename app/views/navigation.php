@@ -13,7 +13,7 @@
           <form class="ui action left icon input" action="/search" method="post">
             <i class="search icon"></i>
             <input name="search_str" type="text" placeholder="...">
-            <button class="ui button">Поиск</button>
+            <button class="ui button blue ">Поиск</button>
           </form>
         </div>
       </div>

@@ -1,10 +1,10 @@
 
 <?php require 'header.php'; ?>
 
-    <h2 class="ui dividing header">Поиск</h2>
+    <h2 class="ui dividing header">Поиск: <?= $_POST['search_str']; ?> </h2>
 
 
-<?= $_POST['search_str']; ?>
+
 
 
 

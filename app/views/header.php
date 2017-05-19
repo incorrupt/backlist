@@ -28,3 +28,4 @@
         </div>
 
         <div class="ui container">
+            <div class="ui clearing"></div>

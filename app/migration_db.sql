@@ -1,4 +1,3 @@
-<?php
 
 DROP TABLE book_author;
 DROP TABLE book_genre;
@@ -53,20 +52,3 @@ CREATE TABLE book_genre (
  
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-return $migrate_sql;
