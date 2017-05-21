@@ -11,10 +11,10 @@ class BooksController extends Controller{
 		$data=array();
 		$book_mapper=$this->container['book_mapper'];
 		$book = $book_mapper->create()->getWithId($id);
+		$book->looks++;
+		$book_mapper->save($book);
 		$data['book']=$book;
 		$data['active_nav'] = 'books';
-		$data['authors']=$book->getAuthors();
-		$data['genres']=$book->getGenres();
 		$this->view->title.=' | '.$book->title;
 		$this->view->render('book_item',$data);
 	}

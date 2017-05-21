@@ -26,7 +26,7 @@ try {
   		return new Router($c);
 	});
 
-	foreach(glob(__DIR__.'/models/*.php') as $file)  
+	foreach(glob(__DIR__.'/Models/*.php') as $file)  
 	{  
 	    $model=strtolower(basename($file, ".php"));  
 	    $mappername=$model.'_mapper';

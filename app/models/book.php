@@ -12,6 +12,7 @@ class Book extends Model {
     public $pages;
     public $description;
     public $publisher_id;
+    public $looks;
 
     public function row(){
     	$row['id']=$this->id;
@@ -21,7 +22,14 @@ class Book extends Model {
         $row['pages']=$this->pages;
     	$row['description']=$this->description;
     	$row['publisher_id']=$this->publisher_id;
+        $row['looks']=$this->looks;
     	return $row;
+    }
+
+    public function getPublisher() {
+        $publisher_mapper=$this->container['publisher_mapper'];
+        $publisher = $publisher_mapper->create()->getWithId($this->publisher_id);
+        return $publisher;   
     }
 
     public function getAuthors() {
@@ -89,6 +97,18 @@ class Book extends Model {
         }
         $book_author = $book_author_mapper->build(['book_id'=>$this->id,'author_id'=>$author->id]);
         $book_author_mapper->save($book_author);
+    }
+
+    public function search($vals=array()){
+        $fields=['title','isbn','description'];
+        $book_search= $this->mapper->search($fields,$vals);
+        $books =array();
+        if (count($book_search)>0){
+            foreach ($book_search as $key => $item) {
+                $books[$key] = $this->mapper->build($item);
+            }  
+        }
+        return $books;   
     }
 
 }

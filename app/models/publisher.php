@@ -14,5 +14,18 @@ class Publisher extends Model {
     	$row['city']=$this->city;
     	return $row;
     }
+
+    public function getBooks() {
+        $book_mapper=$this->container['book_mapper'];
+        $books_p = $book_mapper->create()->getByPublisher_id($this->id);
+        $books =array();
+        if (count($books_p)>0){      
+            foreach ($books_p as $key => $item) {
+                $books[$key] = $book_mapper->create()->getWithId($item->id);
+            }
+        }   
+        return $books;
+    }
+
 }
 

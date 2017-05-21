@@ -18,8 +18,9 @@ class DataMapper {
 		$db_option=[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION];
         $connect = new PDO($cfg->db_dns,$cfg->db_user,$cfg->db_pass,$db_option);
 		$this->connect=$connect;
-	}
+		$this->connect->exec("set names utf8");
 
+	}
 	public function getModel(){
 		return $this->model;
 	}
@@ -36,8 +37,7 @@ class DataMapper {
 		$this->container['logger']->sql($sql,$param);
 		$stmt = $this->connect->prepare($sql);
     	$stmt->execute($param);
-    	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    	return $result;
+    	return $stmt;
 	}
 	private function delete($table,$where) { 
 		$arr_params = array();
@@ -66,6 +66,27 @@ class DataMapper {
     	return $this->connect->lastInsertId(); 
 	}
 
+
+	public function search($fields=array(),$vals=array()) {
+
+		$str_order='';
+		$str_where='';
+		$arr_params=array();
+
+		if (count($fields)>=1) {
+			$arr_where = array();
+		    foreach ( $vals as $key => $value ) {
+		    	$param_name = ':p_'.$key;
+		    	$arr_where[] = $param_name;
+		    	$arr_params[$param_name]=$value;
+		    }
+			$str_where = ' MATCH ('.implode(',',$fields).') AGAINST ('.implode(',',$arr_where).')';
+		}
+
+    	$sql = "SELECT * FROM {$this->model} WHERE {$str_where}  ORDER BY {$str_where} desc ";
+    	return $this->execute($sql,$arr_params)->fetchAll(PDO::FETCH_ASSOC);
+	} 
+
 	public function select($table,$where=array(),$order=array()) {
 		
 		$str_order='';
@@ -91,7 +112,7 @@ class DataMapper {
 	    }
 		 
     	$sql = "SELECT * FROM {$table} {$str_where} {$str_order}";
-    	return $this->execute($sql,$arr_params);
+    	return $this->execute($sql,$arr_params)->fetchAll(PDO::FETCH_ASSOC);
 	} 
 
 	private function update($table,$row,$where) {
