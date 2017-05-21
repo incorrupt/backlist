@@ -28,8 +28,8 @@ try {
 
 	foreach(glob(__DIR__.'/Models/*.php') as $file)  
 	{  
-	    $model=strtolower(basename($file, ".php"));  
-	    $mappername=$model.'_mapper';
+	    $model=basename($file, ".php");  
+	    $mappername=strtolower($model.'_mapper');
 	    $container[$mappername]=$container->factory(function ($c) use ($model) {
 			$mapper = new DataMapper($c,$model);
 			return $mapper;

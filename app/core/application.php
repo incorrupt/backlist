@@ -49,7 +49,7 @@ class Application
 	public function run(){
 		$this->router->dispatch($_SERVER['REQUEST_METHOD'],$_SERVER['REQUEST_URI']);
 
-		$controller='App\Controllers\\'.$this->router->getController().'controller';
+		$controller='App\Controllers\\'.ucfirst($this->router->getController()).'Controller';
 		$action=$this->router->getAction();
 		$action_params=$this->router->getActionParams();
 		$this->container['logger']->debug($this->getClientIp()." {$this->router->getController()} {$action} ".implode(' | ', $action_params) );

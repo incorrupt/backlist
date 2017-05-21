@@ -16,7 +16,7 @@ class View {
 
 	function render($template_view, $data = null)
 	{
-		$templ_path = __DIR__."/../views/{$template_view}.view.php";
+		$templ_path = __DIR__."/../Views/{$template_view}.view.php";
 		if (!is_file($templ_path)) {
 			throw new \Exception("view not exists ");
 		}

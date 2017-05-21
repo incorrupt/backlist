@@ -16,12 +16,6 @@
 
                     <div class="item">
                         <div class="content">
-                            <div class="description"><?=$book->description;?></div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="content">
                             <div class="description">Год: <?=$book->year;?></div>
                         </div>
                     </div>
@@ -69,6 +63,11 @@
                         </div>
                     </div>
 
+                    <div class="item">
+                        <div class="content">
+                            <div class="description"><?=$book->description;?></div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
