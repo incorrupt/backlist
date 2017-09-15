@@ -3,10 +3,14 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule .* index.php [L]
 
-<FilesMatch ".(htaccess|htpasswd|ini|cfg|lo|json)$">
+<FilesMatch ".(htaccess|htpasswd|ini|cfg|json)$">
 	Order Allow,Deny
 	Deny from all
-	Allow from 127.0.0.1
+</FilesMatch>
+
+<FilesMatch "(sql.log)$">
+	Order Allow,Deny
+	Deny from all
 </FilesMatch>
 
 <FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|js|css|pdf)$">
