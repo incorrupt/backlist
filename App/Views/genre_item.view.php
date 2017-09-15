@@ -3,8 +3,8 @@
 
 
     <h2 class="ui dividing header">
-    	<?= $publisher->name; ?>
-    	<div class="sub header">Издатель</div>
+    	<?= $genre->name; ?>
+    	<div class="sub header">Категория</div>
     </h2>
   
   	<div class="ui relaxed divided list">

@@ -1,13 +1,10 @@
 
 <?php require 'header.php'; ?>
 
+    <h2 class="ui dividing header">Поиск: <?=$search_str;?> </h2>
 
-    <h2 class="ui dividing header">
-    	<?= $publisher->name; ?>
-    	<div class="sub header">Издатель</div>
-    </h2>
-  
-  	<div class="ui relaxed divided list">
+
+	<div class="ui relaxed divided list">
 	    <?php if (count($books)>0) { foreach ($books as $book) { ?>
 
 	    	<div class="item">
@@ -22,5 +19,8 @@
 
 	    <?php } } ?>
   	</div>
+
+
+
 
 <?php require 'footer.php'; ?>

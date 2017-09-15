@@ -1,13 +1,13 @@
 
+
 <?php require 'header.php'; ?>
 
-
     <h2 class="ui dividing header">
-    	<?= $publisher->name; ?>
-    	<div class="sub header">Издатель</div>
+    	<?= $author->name; ?>
+		<div class="sub header">Автор</div>
     </h2>
-  
-  	<div class="ui relaxed divided list">
+    
+    <div class="ui relaxed divided list">
 	    <?php if (count($books)>0) { foreach ($books as $book) { ?>
 
 	    	<div class="item">
