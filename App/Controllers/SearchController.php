@@ -7,7 +7,7 @@ class SearchController extends Controller{
 	public function index(){
 		$books=array();
 		if (isset($_POST['search_str'])) {
-			$search_str=strval(htmlspecialchars($_POST['search_str']));
+			$search_str=strval($_POST['search_str']);
 			$book_mapper=$this->container['book_mapper'];	
 			$books=$book_mapper->create()->search([$search_str]);
 		}

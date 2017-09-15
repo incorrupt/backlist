@@ -12,21 +12,22 @@ class Logger {
 	}
 
 	private function write($file,$string){
+
 		$f = (file_exists($file)) ? fopen($file, 'a') : fopen($file, 'w');
 		fwrite($f, $string."\n");	
 		fclose($f);
 	}
 
 	public function error($mess) {
-        $date=date("Y-m-d H:i:s");
-		$message="ERROR {$date}: {$mess}";
+
+		$message="ERROR: {$mess}";
 		$file = $this->container['cfg']->error_log;
 		$this->write($file,$message);	
 	}
 
 	public function debug($mess) {
-        $date=date("Y-m-d H:i:s");
-		$message="DEBUG {$date}: {$mess}";
+
+		$message="DEBUG: {$mess}";
 		$file = $this->container['cfg']->debug_log;
 		$this->write($file,$message);	
 	}
